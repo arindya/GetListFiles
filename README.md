@@ -23,7 +23,7 @@
 
 ---
 
-## ⚙️ Cara Menjalankan
+## ⚙️ How To RUN?
 
 ### 1. **Persiapan**
 - Install Visual Studio 2022 atau lebih baru.
