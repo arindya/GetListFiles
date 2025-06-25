@@ -1,6 +1,6 @@
 # GetList
 
-**QueryRunner** adalah aplikasi desktop berbasis **C# WinForms** yang memungkinkan pengguna menjalankan query SQL terhadap database Oracle dengan mudah, cepat, dan terstruktur. Aplikasi ini mendukung input koneksi dinamis, penyimpanan kredensial secara lokal, serta ekspor hasil ke Excel.
+**GetList** adalah aplikasi desktop berbasis **VB WinForms** insert to db and copy files to digdat
 
 ---
 
