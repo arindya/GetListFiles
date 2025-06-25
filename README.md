@@ -1,4 +1,4 @@
-# QueryRunner
+# GetList
 
 **QueryRunner** adalah aplikasi desktop berbasis **C# WinForms** yang memungkinkan pengguna menjalankan query SQL terhadap database Oracle dengan mudah, cepat, dan terstruktur. Aplikasi ini mendukung input koneksi dinamis, penyimpanan kredensial secara lokal, serta ekspor hasil ke Excel.
 
@@ -7,10 +7,7 @@
 ## 🚀 Fitur Utama
 
 - 🔌 **Koneksi Dinamis ke Oracle**
-  - User ID, Password, Host, Port, dan Service Name dapat diatur dan disimpan ke local user settings.
-  
-- 📝 **Editor Query Interaktif**
-  - TextBox untuk memasukkan SQL dengan dukungan multi-line.
+  - User ID, Password, Host, Port, dan Service Name dapat diatur dan disimpan ke local user settings.  
   
 - 📊 **Hasil Query dalam Tabel**
   - Menampilkan hasil eksekusi query dalam `DataGridView`.
@@ -29,9 +26,8 @@
 - Install Visual Studio 2022 atau lebih baru.
 - Pastikan sudah menginstall NuGet package berikut:
   - `Oracle.ManagedDataAccess`
-  - `ClosedXML` atau `EPPlus` (pilih salah satu untuk ekspor Excel)
 
-### 2. **Konfigurasi Koneksi**
+### 2. **Konfigurasi Koneksi on setting.setting**
 - Jalankan aplikasi.
 - Masukkan:
   - Oracle User ID
@@ -40,5 +36,3 @@
   - Port (default: `1521`)
   - Service Name (contoh: `xx`)
 - Klik tombol **"Simpan Koneksi"**
-
-### 3. **Menjalan**
