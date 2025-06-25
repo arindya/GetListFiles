@@ -7,13 +7,20 @@ Public Class DbSet
     End Sub
 
     Private Sub btnOn_Click(sender As Object, e As EventArgs) Handles btnOn.Click
+        Dim userId As String = My.Settings.OracleUserId
+        Dim passwordx As String = My.Settings.OraclePassword
+        Dim host As String = My.Settings.OracleHost
+        Dim port As String = My.Settings.OraclePort
+        Dim serviceName As String = My.Settings.OracleService
         If String.IsNullOrEmpty(txUid.Text) = False Or String.IsNullOrEmpty(txPwd.Text) = False Or String.IsNullOrEmpty(txSvr.Text) = False Then
             userID = txUid.Text
             password = txPwd.Text
             dSource = txSvr.Text
 
             Using conn As New OracleConnection
-                conn.ConnectionString = "User Id=elnusa;Password=elnusa;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.203.1.231)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=inametadb)))"
+                conn.ConnectionString = String.Format(
+    "User Id={0};Password={1};Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={2})(PORT={3}))(CONNECT_DATA=(SERVICE_NAME={4})))",
+    userId, passwordx, host, port, serviceName)
 
                 Try
                     conn.Open()

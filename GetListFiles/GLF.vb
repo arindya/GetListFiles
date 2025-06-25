@@ -151,9 +151,18 @@ Public Class GLV
     Dim odbda As OracleDataAdapter
     Dim objDataSet As New DataSet
     Dim sql_cek As String
-
-    Dim conString As String = "User Id=elnusa;Password=elnusa;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.203.1.231)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=inametadb)))"
-    Dim connectionString As String = "User Id=elnusa;Password=elnusa;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.203.1.231)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=inametadb)))"
+    'Ambil dari Properties.Settings
+    Dim userId As String = My.Settings.OracleUserId
+    Dim password As String = My.Settings.OraclePassword
+    Dim host As String = My.Settings.OracleHost
+    Dim port As String = My.Settings.OraclePort
+    Dim serviceName As String = My.Settings.OracleService
+    Dim conString As String = String.Format(
+    "User Id={0};Password={1};Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={2})(PORT={3}))(CONNECT_DATA=(SERVICE_NAME={4})))",
+    userId, password, host, port, serviceName)
+    Dim connectionString As String = String.Format(
+    "User Id={0};Password={1};Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={2})(PORT={3}))(CONNECT_DATA=(SERVICE_NAME={4})))",
+    userId, password, host, port, serviceName)
     Dim query As String
     Dim query1 As String
     Dim dataAdp As OracleDataAdapter
@@ -1519,9 +1528,6 @@ Public Class GLV
         If strVal.Contains("_") Then
             strHasil = strVal.Substring(0, strVal.IndexOf("_"))
         End If
-
-        Dim connectionString As String = "User Id=elnusa;Password=elnusa;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.203.1.231)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=inametadb)))"
-
         Try
             Dim query As String = "SELECT well_name FROM well WHERE well_name = :wellname"
             Dim ds As New DataSet()
@@ -1583,9 +1589,6 @@ Public Class GLV
                 find = "aset_id"
                 eqWith = "nama_struktur"
         End Select
-
-        Dim connectionString As String = "User Id=elnusa;Password=elnusa;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.203.1.231)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=inametadb)))"
-
         Try
             Dim query As String = $"SELECT {find} FROM structure WHERE {eqWith} = :param"
 
@@ -1625,9 +1628,6 @@ Public Class GLV
                 strHasil = strSplit(2)
             End If
         End If
-
-        Dim connectionString As String = "User Id=elnusa;Password=elnusa;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.203.1.231)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=inametadb)))"
-
         Try
             Dim query As String = "SELECT aset_id FROM aset WHERE aset_desc = :asetDesc"
 
@@ -1685,8 +1685,6 @@ Public Class GLV
 
     Private Function getWellLogS() As String
         Dim strHasil As String = String.Empty
-        Dim connectionString As String = "User Id=elnusa;Password=elnusa;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.203.1.231)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=inametadb)))"
-
         Try
             Dim query As String = "SELECT MAX(well_log_s) AS id FROM well_log"
 
@@ -1711,8 +1709,6 @@ Public Class GLV
 
     Private Function getGNGRepS() As String
         Dim strHasil As String = String.Empty
-        Dim connectionString As String = "User Id=elnusa;Password=elnusa;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.203.1.231)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=inametadb)))"
-
         Try
             Dim query As String = "SELECT MAX(gng_report_s) AS id FROM gng_report"
 
@@ -3616,8 +3612,6 @@ cekLoop:
 
     Private Function CheckPKWellFile(ByVal WFN As String, ByVal WLN As String, ByVal WFT As String, ByVal WFS As String) As String
         fString = 0
-        Dim connectionString As String = "User Id=elnusa;Password=elnusa;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.203.1.231)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=inametadb)))"
-
         Try
             Dim query As String = "SELECT well_name FROM elnusa.well_file WHERE wf_file_name = :WFN AND well_name = :WLN AND wf_type = :WFT AND wf_subject = :WFS"
             Dim ds As New DataSet()
@@ -3655,8 +3649,6 @@ cekLoop:
 
     Private Function CheckPKWellLogImage(ByVal WFN As String) As String
         Dim result As String = "0"
-        Dim connectionString As String = "User Id=elnusa;Password=elnusa;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.203.1.231)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=inametadb)))"
-
         Try
             Dim query As String = "SELECT wli_file_name FROM elnusa.well_log_image WHERE wli_file_name = :wfn"
             Dim ds As New DataSet()

@@ -8,14 +8,20 @@ Public Class Login
         TextBox2.Text = My.Settings.pass
     End Sub
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
+        Dim userId As String = My.Settings.OracleUserId
+        Dim passwordx As String = My.Settings.OraclePassword
+        Dim host As String = My.Settings.OracleHost
+        Dim port As String = My.Settings.OraclePort
+        Dim serviceName As String = My.Settings.OracleService
         My.Settings.uname = TextBox1.Text
         My.Settings.pass = TextBox2.Text
         My.Settings.Save()
         Me.Enabled = False
         Dim username As String = TextBox1.Text
         Dim password As String = MD5Hash(TextBox2.Text)
-        Dim conString As String = "User Id=elnusa;Password=elnusa;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.203.1.231)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=inametadb)))"
-        'Dim conString As String = "Data Source=" + My.Settings.DSource + ";User ID=" + My.Settings.UserDB + ";Password=" + My.Settings.PassDB + ""
+        Dim conString As String = String.Format(
+    "User Id={0};Password={1};Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={2})(PORT={3}))(CONNECT_DATA=(SERVICE_NAME={4})))",
+    userId, passwordx, host, port, serviceName)
         Dim query As String = "select user_id, user_pass from users where user_id = :user_id and user_pass = :password"
         Dim ds As DataSet = New DataSet()
 
